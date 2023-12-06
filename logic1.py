@@ -49,9 +49,10 @@ class Logic(QMainWindow, Ui_MainWindow):
         within a CSV file.
         :param self: Parameter that refers to itself.
         """
-        with open('votes.csv', 'w', newline='') as f:
+        votes = [f'Cameron - {self.vote_1}', f'Allison - {self.vote_2}', f'Diego - {self.vote_3}', f'Total - {self.vote_total}' ]
+        with open('votes.csv', 'w') as f:
             data = csv.writer(f)
-            data.writerow(f'Cameron - {self.vote_1}; Allison - {self.vote_2}; Diego - {self.vote_3}; Total - {self.vote_total}')
+            data.writerow([votes])
         f.close()
         exit()
 
