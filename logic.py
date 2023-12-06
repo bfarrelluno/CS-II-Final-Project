@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import *
-from gui1 import *
+from gui import *
 import csv
 
 
