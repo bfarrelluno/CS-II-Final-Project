@@ -13,6 +13,9 @@ class Logic(QMainWindow, Ui_MainWindow):
         """
         super().__init__()
         self.setupUi(self)
+        self.voteButton1.hide()
+        self.voteButton2.hide()
+        self.voteButton3.hide()
 
         self.vote_1 = 0
         self.vote_2 = 0
@@ -20,27 +23,74 @@ class Logic(QMainWindow, Ui_MainWindow):
         self.vote_total = 0
 
         self.voteButton.clicked.connect(lambda: self.vote_menu())
+        self.voteButton1.clicked.connect(lambda: self.vote_func_1())
+        self.voteButton2.clicked.connect(lambda: self.vote_func_2())
+        self.voteButton3.clicked.connect(lambda: self.vote_func_3())
         self.exitButton.clicked.connect(lambda: self.log_votes())
 
     def vote_menu(self) -> None:
         """
-        Function that logs what candidate is selected when the
-        Vote button is hit.  It also adds to the respective candidate's
-        counter and the total vote count.
+        Function that switches the vote menu to the candidate menu,
+        displaying the candidates for the candidate menu.
         :param self: Parameter that refers to itself.
         """
-        if self.radioButton1.isChecked():
-            self.vote_1 += 1
-            self.vote_total += 1
-            self.outputLabel.setText(f'Voted Cameron\nCameron - {self.vote_1}\nAllison - {self.vote_2}\nDiego - {self.vote_3}\nTotal - {self.vote_total}')
-        if self.radioButton2.isChecked():
-            self.vote_2 += 1
-            self.vote_total += 1
-            self.outputLabel.setText(f'Voted Allison\nCameron - {self.vote_1}\nAllison - {self.vote_2}\nDiego - {self.vote_3}\nTotal - {self.vote_total}')
-        if self.radioButton3.isChecked():
-            self.vote_3 += 1
-            self.vote_total += 1
-            self.outputLabel.setText(f'Voted Diego\nCameron - {self.vote_1}\nAllison - {self.vote_2}\nDiego - {self.vote_3}\nTotal - {self.vote_total}')
+        self.voteButton.hide()
+        self.exitButton.hide()
+        self.voteButton1.show()
+        self.voteButton2.show()
+        self.voteButton3.show()
+        self.mainLabel.setText("---------------\nCANDIDATE MENU\n---------------")
+
+    def vote_func_1(self) -> None:
+        """
+        Function that logs candidate 1 when their respective
+        radio button is checked.  It also adds to the respective candidate's
+        counter and the total vote count before resetting back to the vote menu.
+        :param self: Parameter that refers to itself.
+        """
+        self.vote_1 += 1
+        self.vote_total += 1
+        self.outputLabel.setText(f'Voted Cameron\nCameron - {self.vote_1}\nAllison - {self.vote_2}\nDiego - {self.vote_3}\nTotal - {self.vote_total}')
+        self.voteButton1.hide()
+        self.voteButton2.hide()
+        self.voteButton3.hide()
+        self.mainLabel.setText("---------------\nVOTE MENU\n---------------")
+        self.voteButton.show()
+        self.exitButton.show()
+
+    def vote_func_2(self) -> None:
+        """
+        Function that logs candidate 2 when their respective
+        radio button is checked.  It also adds to the respective candidate's
+        counter and the total vote count before resetting back to the vote menu.
+        :param self: Parameter that refers to itself.
+        """
+        self.vote_2 += 1
+        self.vote_total += 1
+        self.outputLabel.setText(f'Voted Allison\nCameron - {self.vote_1}\nAllison - {self.vote_2}\nDiego - {self.vote_3}\nTotal - {self.vote_total}')
+        self.voteButton1.hide()
+        self.voteButton2.hide()
+        self.voteButton3.hide()
+        self.mainLabel.setText("---------------\nVOTE MENU\n---------------")
+        self.voteButton.show()
+        self.exitButton.show()
+
+    def vote_func_3(self) -> None:
+        """
+        Function that logs candidate 3 when their respective
+        radio button is checked.  It also adds to the respective candidate's
+        counter and the total vote count before resetting back to the vote menu.
+        :param self: Parameter that refers to itself.
+        """
+        self.vote_3 += 1
+        self.vote_total += 1
+        self.outputLabel.setText(f'Voted Diego\nCameron - {self.vote_1}\nAllison - {self.vote_2}\nDiego - {self.vote_3}\nTotal - {self.vote_total}')
+        self.voteButton1.hide()
+        self.voteButton2.hide()
+        self.voteButton3.hide()
+        self.mainLabel.setText("---------------\nVOTE MENU\n---------------")
+        self.voteButton.show()
+        self.exitButton.show()
 
     def log_votes(self) -> None:
         """
